@@ -6,4 +6,7 @@
     background-color: rgb(106, 201, 169)
 }
 
-;
+#countries {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
