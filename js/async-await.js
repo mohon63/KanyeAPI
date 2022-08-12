@@ -15,8 +15,6 @@ const searchFood = () => {
             .then(res => res.json())
             .then(data => displaySearchResult(data.meals))
     }
-
-
 };
 
 const displaySearchResult = meals => {
@@ -26,14 +24,6 @@ const displaySearchResult = meals => {
     // clear search result
     //1 searchResult.innerHTML = '';
     searchResult.textContent = '';
-
-    // error message
-    // if (meals.length === 0) {
-    //     document.getElementById('result-found').innerText = `Show no result found.`;
-
-    //     return;
-    // } else {
-    // };
 
     meals.forEach(meal => {
         const div = document.createElement('div');
@@ -51,11 +41,16 @@ const displaySearchResult = meals => {
     });
 };
 
-const loadMealDetails = mealId => {
+const loadMealDetails = async mealId => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayMealDetails(data.meals[0]))
+
+    const res = await fetch(url);
+    const data = await res.json();
+    displayMealDetails(data.meals[0]);
+
+    // fetch(url)
+    //     .then(res => res.json())
+    //     .then(data => displayMealDetails(data.meals[0]))
 };
 
 const displayMealDetails = meal => {
