@@ -4,15 +4,25 @@ const searchFood = () => {
     searchField.value = '';
     // console.log(searchText)
 
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
-    // console.log(url)
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displaySearchResult(data.meals))
+    if (searchText == '') {
+        document.getElementById('result-found').innerText = `Please write something to display`;
+        document.getElementById('search-result').textContent = '';
+    } else {
+        // load data
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
+        // console.log(url)
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displaySearchResult(data.meals))
+    }
+
+
 };
 
 const displaySearchResult = meals => {
     const searchResult = document.getElementById('search-result');
+    // searchResult.innerHTML = '';
+    searchResult.textContent = '';
     meals.forEach(meal => {
         // console.log(meal)
         const div = document.createElement('div');
