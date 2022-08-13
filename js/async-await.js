@@ -77,4 +77,4 @@ const displayMealDetails = meal => {
         </div>
     `;
     mealDetails.appendChild(div)
-}
+};
